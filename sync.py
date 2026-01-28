@@ -102,7 +102,8 @@ def create_work_package(project_href, subject, description, type_name, parent_hr
     
     type_id = 1 # Default Task
     if type_name.lower().startswith("phase"):
-        type_id = 2 # Default Milestone often, or just reuse task.
+        type_id = 1 # Force Task for Phases too, since Milestones cannot have children
+        # type_id = 2 # OLD: Milestone
 
     payload["_links"]["type"]["href"] = f"/api/v3/types/{type_id}"
 
