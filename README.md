@@ -22,8 +22,8 @@ direnv allow
 Create a `.env` file (copied from `.env` template):
 ```bash
 OPENPROJECT_API_KEY=your_api_key
-OPENPROJECT_URL=https://openproject.cloud.bitnorth.ca
-OPENPROJECT_PROJECT=asocial
+OPENPROJECT_URL=https://openproject.example.com
+OPENPROJECT_PROJECT=project-identifier
 ```
 
 ## Usage
