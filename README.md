@@ -41,7 +41,7 @@ python sync.py --dry-run
 
 ### CSV Format
 The script expects a CSV file with the following headers:
-- `Type`: Must be "Phase" for parent containers or "Task" for children.
+- `Type`: Must be "Phase" for parent containers, "Task" for children, or "Milestone".
 - `Subject`: The title of the work package.
 - `Description`: Detaied description (Markdown supported).
 - `Priority`: (Optional) Priority level (e.g., High, Normal).
