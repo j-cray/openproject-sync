@@ -9,11 +9,20 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+import argparse
+
 # Configuration
 OPENPROJECT_URL = os.environ.get("OPENPROJECT_URL", "https://openproject.cloud.bitnorth.ca")
 API_KEY = os.environ.get("OPENPROJECT_API_KEY")
 PROJECT_IDENTIFIER = os.environ.get("OPENPROJECT_PROJECT", "asocial") # Default project identifier
-DRY_RUN = "--dry-run" in sys.argv
+
+# Argument Parsing
+parser = argparse.ArgumentParser(description="Sync CSV roadmap to OpenProject.")
+parser.add_argument("csv_file", nargs="?", default="roadmap.csv", help="Path to the CSV file (default: roadmap.csv)")
+parser.add_argument("--dry-run", action="store_true", help="Perform a dry run without making changes")
+args = parser.parse_args()
+
+DRY_RUN = args.dry_run
 
 if not API_KEY:
     print("Error: OPENPROJECT_API_KEY environment variable is not set.")
@@ -111,13 +120,18 @@ def main():
     print(f"Starting Sync (Dry Run: {DRY_RUN})...")
     project_href = get_project_href(PROJECT_IDENTIFIER)
     print(f"Target Project: {project_href}")
+    print(f"Reading CSV: {args.csv_file}")
 
     # Read CSV
     tasks = []
-    with open("roadmap.csv", "r") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            tasks.append(row)
+    try:
+        with open(args.csv_file, "r") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                tasks.append(row)
+    except FileNotFoundError:
+        print(f"Error: CSV file '{args.csv_file}' not found.")
+        exit(1)
 
     # Processing
     # We need to maintain context of the current 'Phase' parent
