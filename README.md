@@ -39,6 +39,18 @@ Run a dry run to see what would happen:
 python sync.py --dry-run
 ```
 
+### CSV Format
+The script expects a CSV file with the following headers:
+- `Type`: Must be "Phase" for parent containers or "Task" for children.
+- `Subject`: The title of the work package.
+- `Description`: Detaied description (Markdown supported).
+- `Priority`: (Optional) Priority level (e.g., High, Normal).
+- `EstHours`: Estimated time in hours.
+
+See `template.csv` for an example.
+
+**Note:** The script relies on row order. A "Task" is assigned to the most recently encountered "Phase".
+
 ### As a Submodule
 You can include this repository as a submodule to sync roadmaps from other projects.
 

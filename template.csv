@@ -1,0 +1,7 @@
+Type,Subject,Description,Priority,EstHours
+Phase,Phase 1: Foundation,Set up the basics,High,10
+Task,Initialize Repository,Git init and readme,High,1
+Task,Setup Database,Install Postgres,High,4
+Phase,Phase 2: MVP,Core features,High,20
+Task,Build API,Basic endpoints,High,10
+Task,Build UI,Frontend components,Normal,10
