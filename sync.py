@@ -4,6 +4,10 @@ import requests
 import json
 import base64
 import sys
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Configuration
 OPENPROJECT_URL = os.environ.get("OPENPROJECT_URL", "https://openproject.cloud.bitnorth.ca")
